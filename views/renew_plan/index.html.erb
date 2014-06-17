@@ -1,0 +1,45 @@
+<% content_for :stylesheets do %>
+	.x-action-col-cell img {
+		height: 16px;
+		width: 16px;
+		cursor: pointer;
+	}
+	.x-action-col-cell img.checked-col {
+		background-image: url(/ext/examples/ux/css/images/checked.gif);
+	}
+	.x-action-col-cell img.unchecked-col {
+		background-image: url(/ext/examples/ux/css/images/unchecked.gif);
+	}
+	
+	.x-goods_in_bp .x-grid-cell {
+		background-color: #FFD9DF;
+	}
+	
+	.x-goods_to_give .x-grid-cell {
+		background-color: #FFB6C1;
+	}
+	
+	.x-bad_round .x-grid-cell {
+		background-color: #FFFF5A;
+	}
+	
+	.x-bold div.x-grid-cell-inner{
+		font-weight: bold;
+	}
+	
+	.x-red div.x-grid-cell-inner{
+		color: red;
+	}
+	
+	.x-blue div.x-grid-cell-inner{
+		color: blue;
+	}
+	
+	.x-wrap_cells div.x-grid-cell-inner {
+		word-wrap: break-word;
+		white-space: normal;
+	}
+<% end -%>
+<% content_for :js_controller do %>
+,'RenewPlan'
+<% end -%>
