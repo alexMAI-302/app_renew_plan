@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><%= yield_content(:title)%></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<%= yield_content :meta %>
+		<link rel="shortcut icon" href="/images/unact-ico.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="/images/unact-touch-icon.png" />
+		<%= yield_content :stylesheets_links %>
+		<link type="text/css" rel="stylesheet" media="screen" href="/stylesheets/logo.css">
+		<link type="text/css" rel="stylesheet" media="screen" href="/ext/resources/css/ext-all.css">
+		<link type="text/css" rel="stylesheet" media="screen" href="/ext/examples/ux/grid/gridPrinterCss/print.css">
+		<style type="text/css">
+			<%= yield_content :stylesheets %>
+		</style>
+		<script type="text/javascript" src="/ext/ext-all-dev.js"></script>
+		<script type="text/javascript" src="/ext/locale/ext-lang-ru.js"></script>
+		<script type="text/javascript" src="/javascripts/lang-ru.js"></script>
+		<script type="text/javascript">
+			Ext.Loader.setConfig(
+			{
+				enabled: true,
+				paths: {app: '/javascripts/app'}
+			});
+
+			Ext.application({
+			controllers: ['menu'<%= yield_content :js_controller %>
+				], name: 'app',
+				appFolder: '/javascripts/app',
+				launch: function() {
+					<%= yield_content :view_loader %>
+				}
+			});
+		</script>
+		<%= yield_content :js %>
+	</head>
+	<body <%= yield_content :body_attrs %>>
+		<div id="header">
+			<table cellpadding="0" cellspacing="0" width="100%">
+				<tr class="logobg">
+					<td width="2%"><img width="20" height="1" src="/images/0.gif" /></td>
+					<td><a href="/"><img src="/images/logo.png" /></a></td>
+					<td valign="bottom" class="logobg title">
+						<nobr>
+						  <%= yield_content(:title) || current_menu%>
+						</nobr>
+					</td>
+					<td class="logodecor logobg user" align="right" width="96%">
+						<div>
+							<span style="background-color: rgba(237, 28, 36, 0.5); padding-top: 10px;">
+								<span style="background-color: rgba(229, 20, 28, 0.6); padding-top: 5px; padding-bottom: 3px;">
+									<span>
+										<nobr>
+											<%= session[:user_id] %>&nbsp;&nbsp;
+											<% if session[:user_id].nil? %>
+												<a href="/login/login">Вход</a>
+											<% else %>
+												<a href="/login/logout">Выход</a>
+											<% end %>
+										</nobr>
+									</span>
+								</span>
+							</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<div id="menu_js"></div>
+			<div id="content" class="center_content">
+				<div id='js_container'></div>
+				<%= yield_content(:content)%>
+			</div>
+		</div>
+	</body>
+</html>

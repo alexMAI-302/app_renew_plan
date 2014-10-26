@@ -1,9 +1,15 @@
 require 'sinatra'
+require 'sinatra/base'
+require 'sinatra/content_for'
 
-get '/renew_plan' do
-	redirect '/renew_plan/index.html.erb'
-end
+Dir.glob('./controllers/*.rb').each { |file| require_relative file }
 
-get '/renew_plan/index.html.erb'
-	"That's it"
+class Hi < Sinatra::Base
+  helpers Sinatra::ContentFor
+  
+  configure do
+    set :root, File.dirname(__FILE__)
+  end
+  
+  run! if __FILE__ == $0
 end
